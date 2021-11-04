@@ -17,10 +17,10 @@ const { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes } = require('./iss');
 //   console.log('It worked! Returned coordinates: ', coordinates);
 // });
 
-fetchISSFlyOverTimes({ latitude: 52.157, longitude: -106.5614 }, (error, flybys) => {
-  if (error) {
-    console.log("Failed.", error);
-    return;
-  }
-  console.log("Success! flybys: ", flybys);
-});
+// fetchISSFlyOverTimes({ latitude: 52.157, longitude: -106.5614 }, (error, flybys) => {
+//   if (error) {
+//     console.log("Failed.", error);
+//     return;
+//   }
+//   console.log("Success! flybys: ", flybys);
+// });
