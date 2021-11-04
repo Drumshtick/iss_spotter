@@ -9,10 +9,15 @@ const request = require('request');
  *   - The IP address as a string (null if error). Example: "162.245.144.188"
  */
 const fetchMyIP = function(callback) {
-  // request('https://api64.ipify.org', (error, response, body) => {
-  //   console.log(body);
-  // });
+  request('https://api64.ipify.org', (error, response, body) => {
+    if (error !== null) {
+      callback(error, null);
+    } else if (body.length === 0) {
+      callback("No response", null);
+    } else {
+      let ip = body;
+      callback(null, ip);
+    }
+  });
 };
-fetchMyIP(null);
-
 module.exports = { fetchMyIP };
