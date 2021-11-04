@@ -10,14 +10,19 @@ const request = require('request');
  */
 const fetchMyIP = function(callback) {
   request('https://api64.ipify.org', (error, response, body) => {
-    if (error !== null) {
+    // error can be set if invalid domain, user is offline, etc.
+    if (error) {
       callback(error, null);
-    } else if (body.length === 0) {
-      callback("No response", null);
-    } else {
-      let ip = body;
-      callback(null, ip);
+      return;
     }
+    // if non-200 status, assume server error
+    if (response.statusCode !== 200) {
+      const msg = `Status Code ${response.statusCode} when fetching IP. Response: ${body}`;
+      callback(Error(msg), null);
+      return;
+    }
+    let ip = body;
+    callback(null, ip);
   });
 };
 module.exports = { fetchMyIP };
